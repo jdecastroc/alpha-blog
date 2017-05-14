@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     def update #When editing and updating object
         set_article #can be shown in the rake routes command
         if @article.update(article_params)  #Check the validations and update whit the params 
-            flash[:notice] = "Article was successfully edited" 
+            flash[:success] = "Article was successfully edited" 
             redirect_to article_path(@article)
         else
             render 'edit' #render the edit template again when 
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
         #render plain: params[:article].inspect
         @article = Article.new(article_params)
         if @article.save  #Check the validations
-            flash[:notice] = "Article was successfully created" 
+            flash[:success] = "Article was successfully created" 
             redirect_to article_path(@article)
         else
             render 'new' #render the new template again when 
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
     def destroy
         set_article
         @article.destroy
-        flash[:notice] = "Article was successfully deleted"
+        flash[:danger] = "Article was successfully deleted"
         redirect_to articles_path
     end
     
